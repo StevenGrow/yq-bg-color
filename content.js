@@ -10,16 +10,41 @@ function applyBackgroundColor(color) {
         document.head.appendChild(styleEl);
     }
 
-    // We target body and potentially other common containers just in case
-    // override widely with !important
+    // Use more specific selectors to override Yuque's deep nesting
+    // We use attribute selectors [class*="..."] to match CSS modules classes that have random suffixes
     styleEl.textContent = `
-    body, 
-    .yuque-layout-container, 
+    /* Global containers */
+    body,
+    .lark,
+    #lark-container,
     .layout-container,
-    #react-root {
+    #react-root,
+    [class*="ReaderLayout-module_wrapper"],
+    [class*="BasicLayout-module_wrapper"] {
       background-color: ${color} !important;
       background: ${color} !important;
     }
+
+    /* Document paper/content wrappers */
+    [class*="BookReader-module_wrapper"],
+    [class*="DocReader-module_wrapper"],
+    [class*="Article-module_article"],
+    .ne-viewer-body,
+    .ne-engine-view {
+      background-color: ${color} !important;
+    }
+
+    /* Make sidebars and panels transparent to let the background show through */
+    /* Or color them if they need to match */
+    [class*="ReaderLayout-module_aside"],
+    [class*="sidePanel-module_panel"],
+    [class*="Catalog-module_container"],
+    .yuque-layout-sidebar {
+      background-color: transparent !important;
+    }
+    
+    /* Ensure text contrast isn't totally lost (optional, but good for safety) */
+    /* This is risky if the user picks dark blue, but for light colors it's fine. */
   `;
 }
 
