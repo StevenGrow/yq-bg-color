@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Yuque Background Color Customizer",
+  "version": "1.0",
+  "description": "Customize the background color of Yuque pages.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.yuque.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Set Background Color"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.yuque.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
