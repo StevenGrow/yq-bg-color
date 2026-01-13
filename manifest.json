@@ -3,6 +3,12 @@
   "name": "Yuque Background Color Customizer",
   "version": "1.0",
   "description": "Customize the background color of Yuque pages.",
+  "icons": {
+    "16": "icons/favicon-16x16.png",
+    "32": "icons/favicon-32x32.png",
+    "48": "icons/android-chrome-192x192.png",
+    "128": "icons/android-chrome-192x192.png"
+  },
   "permissions": [
     "storage"
   ],
@@ -11,12 +17,22 @@
   ],
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Set Background Color"
+    "default_title": "Set Background Color",
+    "default_icon": {
+      "16": "icons/favicon-16x16.png",
+      "32": "icons/favicon-32x32.png",
+      "48": "icons/android-chrome-192x192.png",
+      "128": "icons/android-chrome-192x192.png"
+    }
   },
   "content_scripts": [
     {
-      "matches": ["https://www.yuque.com/*"],
-      "js": ["content.js"],
+      "matches": [
+        "https://www.yuque.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_idle"
     }
   ]
